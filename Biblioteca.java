@@ -54,5 +54,15 @@ public class Biblioteca extends JFrame implements ActionListener {
         btnEliminar.setBackground(new Color(138, 43, 226));
         btnEliminar.setForeground(new Color(255, 255, 255, 255));
         btnEliminar.setPreferredSize(new Dimension(200, 40));
+
+        //Boton buscar libro
+        JButton btnBuscar = new JButton("Buscar");
+        btnBuscar.addActionListener(this);
+        btnBuscar.setFont(new Font("Arial", Font.BOLD, 16));
+        btnBuscar.setBackground(new Color(32, 83, 210));
+        btnBuscar.setForeground(new Color(255, 255, 255, 255));
+        btnBuscar.setPreferredSize(new Dimension(200, 40));
+
+
     }
 }

@@ -38,5 +38,13 @@ public class Biblioteca extends JFrame implements ActionListener {
         formulario.add(txtTitulo);
         formulario.add(lblAutor);
         formulario.add(txtAutor);
+
+        //Boton añadir libro
+        JButton btnAgregar = new JButton("Agregar");
+        btnAgregar.addActionListener(this);
+        btnAgregar.setFont(new Font("Arial", Font.BOLD, 16));
+        btnAgregar.setBackground(new Color(138, 43, 226));
+        btnAgregar.setForeground(new Color(255, 255, 255, 255));
+        btnAgregar.setPreferredSize(new Dimension(200, 40));
     }
 }

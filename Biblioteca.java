@@ -70,5 +70,21 @@ public class Biblioteca extends JFrame implements ActionListener {
         btnInventario.setBackground(new Color(32, 83, 210));
         btnInventario.setForeground(new Color(255, 255, 255, 255));
         btnInventario.setPreferredSize(new Dimension(200, 40));
+
+        formulario.add(btnAgregar);
+        formulario.add(btnEliminar);
+        formulario.add(btnBuscar);
+        formulario.add(btnInventario);
+
+        //Area de resultados
+        txtAreaResultado = new JTextArea();
+        txtAreaResultado.setEditable(false);
+        txtAreaResultado.setFont(new Font("Arial", Font.PLAIN, 16));
+        txtAreaResultado.setLineWrap(true);
+        txtAreaResultado.setWrapStyleWord(true);
+        txtAreaResultado.setBackground(new Color(144, 172, 246));
+        txtAreaResultado.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+        JScrollPane scrollPane = new JScrollPane(txtAreaResultado);
+        scrollPane.setPreferredSize(new Dimension(560, 200));
     }
 }

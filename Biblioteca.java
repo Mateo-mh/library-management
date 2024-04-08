@@ -86,5 +86,13 @@ public class Biblioteca extends JFrame implements ActionListener {
         txtAreaResultado.setBorder(BorderFactory.createLineBorder(Color.lightGray));
         JScrollPane scrollPane = new JScrollPane(txtAreaResultado);
         scrollPane.setPreferredSize(new Dimension(560, 200));
+
+        //Panel principal
+        JPanel panelPrincipal = new JPanel(new BorderLayout());
+        panelPrincipal.add(formulario, BorderLayout.NORTH);
+        panelPrincipal.add(scrollPane, BorderLayout.SOUTH);
+        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        add(panelPrincipal);
+        setVisible(true);
     }
 }

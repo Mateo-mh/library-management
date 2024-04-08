@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
@@ -10,12 +11,12 @@ public class Biblioteca extends JFrame implements ActionListener {
     private JTextArea txtAreaResultado;
     private List<Libro> libros;
 
-    public Biblioteca (){
+    public Biblioteca() {
         super("Biblioteca");
         libros = new ArrayList<>();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600,400);
+        setSize(600, 400);
         setLayout(new BorderLayout());
         setResizable(false);
         setLocationRelativeTo(null);
@@ -91,8 +92,49 @@ public class Biblioteca extends JFrame implements ActionListener {
         JPanel panelPrincipal = new JPanel(new BorderLayout());
         panelPrincipal.add(formulario, BorderLayout.NORTH);
         panelPrincipal.add(scrollPane, BorderLayout.SOUTH);
-        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         add(panelPrincipal);
         setVisible(true);
+    }
+
+    //Aqui se empieza a manejar la logica
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Agregar")) {
+            String titulo = txtTitulo.getText();
+            String autor = txtAutor.getText();
+            if (!titulo.isEmpty() && autor.isEmpty()) {
+                agregarLibro(titulo, autor);
+                txtTitulo.setText("");
+                txtAutor.setText("");
+                txtAreaResultado.setText("El libro ha sido añadido correctamente a la biblioteca");
+            } else {
+                txtAreaResultado.setText("Por favor introduce el titulo y el autor del libro");
+            }
+        } else if (e.getActionCommand().equals("Eliminar")) {
+            String titulo = txtTitulo.getText();
+            eliminarLibro(titulo);
+            txtTitulo.setText("");
+            txtAutor.setText("");
+            txtAreaResultado.setText("El libro ha sido eliminado correctamente");
+        } else if (e.getActionCommand().equals("Buscar")) {
+            String terminoBusqueda = txtTitulo.getText();
+            String tipoBusqueda = "titulo";
+            if (!terminoBusqueda.isEmpty()) {
+                List<String> resultados = buscarLibro(terminoBusqueda, tipoBusqueda);
+                txtAreaResultado.setText("");
+                if (resultados.isEmpty()) {
+                    txtAreaResultado.setText("No se encontraron libros con este titulo " + terminoBusqueda + ".");
+                } else {
+                    for (String resultado : resultados) {
+                        txtAreaResultado.append(resultado + "\n");
+                    }
+                }
+            } else {
+                txtAreaResultado.setText("Por favor introduce un termino de busqueda");
+            }
+            txtTitulo.setText("");
+            txtAutor.setText("");
+        }
     }
 }

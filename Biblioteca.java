@@ -135,6 +135,23 @@ public class Biblioteca extends JFrame implements ActionListener {
             }
             txtTitulo.setText("");
             txtAutor.setText("");
+        }else if(e.getActionCommand().equals("Inventario")){
+            txtAreaResultado.setText("");
+            List<String> inventario = getInventario();
+            if (inventario.isEmpty()){
+                txtAreaResultado.setText("No se encontraron libros en el inventario");
+            }else {
+                for(String libro : inventario){
+                    txtAreaResultado.append(libro + "\n");
+                }
+            }
+            txtTitulo.setText("");
+            txtAutor.setText("");
         }
+    }
+
+    public void agregarLibro(String titulo, String autor) {
+        Libro newLibro = new Libro(titulo, autor);
+        libros.add(newLibro);
     }
 }

@@ -154,4 +154,34 @@ public class Biblioteca extends JFrame implements ActionListener {
         Libro newLibro = new Libro(titulo, autor);
         libros.add(newLibro);
     }
+
+    public void eliminarLibro(String titulo){
+        for (int i = 0; i < libros.size(); i++){
+            Libro libro = libros.get(i);
+            if(libro.getTitulo().equalsIgnoreCase(titulo)){
+                libros.remove(i);
+                break;
+            }
+        }
+    }
+
+    public List<String> buscarLibro(String terminoBusqueda, String tipoBusqueda){
+        List<String> results = new ArrayList<>();
+        for (Libro libro: libros){
+            if (tipoBusqueda.equalsIgnoreCase("titulo")){
+                if (libro.getTitulo().equalsIgnoreCase(terminoBusqueda)){
+                    results.add(libro.toString());
+                }
+            } else if (tipoBusqueda.equalsIgnoreCase("autor")) {
+                if (libro.getAutor().equalsIgnoreCase(terminoBusqueda)){
+                    results.add(libro.toString());
+                }
+            }
+        }
+        return results;
+    }
+
+    public List<String> getInventario(){
+
+    }
 }

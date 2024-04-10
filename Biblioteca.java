@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Biblioteca extends JFrame implements ActionListener {
     private JTextField txtTitulo;
@@ -103,13 +105,13 @@ public class Biblioteca extends JFrame implements ActionListener {
         if (e.getActionCommand().equals("Agregar")) {
             String titulo = txtTitulo.getText();
             String autor = txtAutor.getText();
-            if (!titulo.isEmpty() && autor.isEmpty()) {
+            if (!titulo.isEmpty() && !autor.isEmpty()) {
                 agregarLibro(titulo, autor);
                 txtTitulo.setText("");
                 txtAutor.setText("");
                 txtAreaResultado.setText("El libro ha sido añadido correctamente a la biblioteca");
             } else {
-                txtAreaResultado.setText("Por favor introduce el titulo y el autor del libro");
+                txtAreaResultado.setText("Por favor introduce el título y el autor del libro");
             }
         } else if (e.getActionCommand().equals("Eliminar")) {
             String titulo = txtTitulo.getText();
@@ -182,6 +184,27 @@ public class Biblioteca extends JFrame implements ActionListener {
     }
 
     public List<String> getInventario(){
+        List<String> inventario = new ArrayList<>();
+        for (Libro libro: libros){
+            inventario.add(libro.toString());
+        }
+        return inventario;
+    }
 
+    public static void main(String[] args){
+        SwingUtilities.invokeLater(() ->{
+            try{
+                UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            } catch (IllegalAccessException ex){
+                ex.printStackTrace();
+            } catch (ClassNotFoundException ex){
+                Logger.getLogger(Biblioteca.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex){
+                Logger.getLogger(Biblioteca.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedLookAndFeelException ex){
+                Logger.getLogger(Biblioteca.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            new Biblioteca();
+        });
     }
 }
